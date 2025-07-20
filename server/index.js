@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import fighterRoutes from './routes/fighterRoutes.js';
+import matchupRoutes from './routes/matchupRoutes.js';
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api/fighters', fighterRoutes);
+app.use('/api/matchups', matchupRoutes);
 
 // Test route
 app.get('/', (req, res) => {

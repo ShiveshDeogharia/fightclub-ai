@@ -1,0 +1,30 @@
+.fighter-list {
+  padding: 2rem;
+  text-align: center;
+}
+
+.fighter-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.fighter-card {
+  background-color: #121212;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 200px;
+  transition: transform 0.2s ease;
+}
+
+.fighter-card:hover {
+  transform: scale(1.05);
+}
+
+.fighter-card img {
+  width: 100%;
+  border-radius: 8px;
+}

@@ -1,0 +1,20 @@
+.matchup-list {
+  padding: 2rem;
+  text-align: center;
+}
+
+.matchup-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.matchup-card {
+  background-color: #1e1e1e;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
