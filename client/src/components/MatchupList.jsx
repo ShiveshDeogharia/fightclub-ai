@@ -6,6 +6,7 @@ import './MatchupList.css';
 const MatchupList = () => {
   const [matchups, setMatchups] = useState([]);
   const [loading, setLoading] = useState(false); 
+  const [trashTalks, setTrashTalks] = useState({});
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/matchups')
@@ -38,6 +39,22 @@ const MatchupList = () => {
     }
   };
 
+  const generateTrashTalk = async (fighterA, fighterB, index) => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/trash-talk', {
+        fighter1: fighterA,
+        fighter2: fighterB
+      });
+      const newTrashTalks = { ...trashTalks };
+      newTrashTalks[index] = response.data.trashTalk;
+      setTrashTalks(newTrashTalks);
+    } catch (err) {
+      console.error("Trash talk error:", err);
+      setTrashTalks((prev) => ({ ...prev, [index]: "❌ Error generating trash talk." }));
+    }
+  };
+
+
   return (
     <div className="matchup-list">
       <h2>Fantasy Matchups</h2>
@@ -49,6 +66,15 @@ const MatchupList = () => {
             <button onClick={() => simulateFight(match.fighterA, match.fighterB)}>
               🔮 Simulate Fight with AI
             </button>
+
+            <button onClick={() => generateTrashTalk(match.fighterA, match.fighterB, index)}>
+              🔥 Trash Talk
+            </button>
+
+            {trashTalks[index] && (
+              <p className="trash-talk">🗣️ {trashTalks[index]}</p>
+            )}
+
           </div>
         ))}
       </div>

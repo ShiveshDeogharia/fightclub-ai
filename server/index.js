@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import fighterRoutes from './routes/fighterRoutes.js';
 import matchupRoutes from './routes/matchupRoutes.js';
 import simulateRoute from "./routes/simulate.js";
+import trashTalkRoutes from "./routes/trashTalk.js";
+
 
 dotenv.config();
 
@@ -16,6 +18,7 @@ app.use(express.json());
 app.use('/api/fighters', fighterRoutes);
 app.use('/api/matchups', matchupRoutes);
 app.use('/api/simulate', simulateRoute);
+app.use("/api/trash-talk", trashTalkRoutes);
 
 // Test route
 app.get('/', (req, res) => {

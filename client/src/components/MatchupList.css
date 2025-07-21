@@ -29,3 +29,9 @@
   font-family: monospace;
   white-space: pre-wrap;
 }
+
+.trash-talk {
+  font-style: italic;
+  color: #cc0000;
+  margin-top: 5px;
+}
