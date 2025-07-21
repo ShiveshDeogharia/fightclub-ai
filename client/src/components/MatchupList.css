@@ -35,3 +35,21 @@
   color: #cc0000;
   margin-top: 5px;
 }
+
+.coach-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 2px dashed #ccc;
+}
+
+.coach-section input {
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.coach-response {
+  margin-top: 1rem;
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-left: 4px solid #007bff;
+}

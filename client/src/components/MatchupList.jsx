@@ -8,6 +8,12 @@ const MatchupList = () => {
   const [loading, setLoading] = useState(false); 
   const [trashTalks, setTrashTalks] = useState({});
 
+  const [userName, setUser] = useState('');
+  const [opponent, setOpponent] = useState('');
+  const [coach, setCoach] = useState('');
+  const [coachAdvice, setCoachAdvice] = useState('');
+
+
   useEffect(() => {
     axios.get('http://localhost:5000/api/matchups')
       .then(res => setMatchups(res.data))
@@ -55,6 +61,23 @@ const MatchupList = () => {
   };
 
 
+  const getCoachingAdvice = async () => {
+    setCoachAdvice("Loading...");
+    try {
+          const response = await axios.post(
+          'http://localhost:5000/api/coach',
+          { userName, opponent, coach },
+          { headers: { "Content-Type": "application/json" } }
+        );
+
+        setCoachAdvice(response.data.advice);
+    } catch (err) {
+      console.error("Coach advice error:", err);
+      setCoachAdvice("❌ Error getting coaching advice.");
+    }
+  };
+
+
   return (
     <div className="matchup-list">
       <h2>Fantasy Matchups</h2>
@@ -78,6 +101,34 @@ const MatchupList = () => {
           </div>
         ))}
       </div>
+      {/* 🧠 AI Coach Section */}
+      <div className="coach-section">
+        <h3>🧠 Get Coaching Advice</h3>
+        <input
+          type="text"
+          placeholder="Your name"
+          value={userName}
+          onChange={(e) => setUser(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Opponent's name"
+          value={opponent}
+          onChange={(e) => setOpponent(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Choose a coach (e.g. Mike Tyson)"
+          value={coach}
+          onChange={(e) => setCoach(e.target.value)}
+        />
+        <button onClick={getCoachingAdvice}>🏋️ Get Advice</button>
+        {coachAdvice && (
+          <div className="coach-response" dangerouslySetInnerHTML={{ __html: coachAdvice.replace(/\n/g, "<br/>") }} />
+        )}
+
+      </div>
+
 
       {loading && <p>⚔️ Simulating...</p>}
       
