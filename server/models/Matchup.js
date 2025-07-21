@@ -1,23 +1,19 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const MatchupSchema = new mongoose.Schema({
+const matchupSchema = new mongoose.Schema({
   fighterA: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Fighter',
+    type: String,
     required: true,
   },
   fighterB: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Fighter',
+    type: String,
     required: true,
   },
   result: {
-    type: String, // AI-generated outcome text
+    type: String,
+    required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  }
 });
 
-export default mongoose.model('Matchup', MatchupSchema);
+const Matchup = mongoose.model("Matchup", matchupSchema);
+export default Matchup;
